@@ -1,6 +1,6 @@
 <?php
-require_once "config.php"; 
-include_once "cabecalho.php"; 
+require_once "config.php";
+include_once "cabecalho.php";
 
 $mensagem_erro = "";
 
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "INSERT INTO consultas (id_paciente, id_dentista, id_procedimento, data_consulta, hora_consulta, valor_final) 
             VALUES ('$id_p', '$id_d', '$id_pr', '$data', '$hora', 0.00)";
-    
+
     try {
         if ($conexao->query($sql)) {
             echo "<script>window.location.href='index.php';</script>";

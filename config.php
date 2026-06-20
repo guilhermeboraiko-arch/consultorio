@@ -1,8 +1,8 @@
 <?php
-$host = "localhost";       
-$usuario = "root";         
-$senha = "";               
-$banco = "consultorio_odontologico"; 
+$host = "localhost";
+$usuario = "root";
+$senha = "";
+$banco = "consultorio_odontologico";
 
 try {
     $conexao = new PDO("mysql:host=$host;dbname=$banco;charset=utf8", $usuario, $senha);
@@ -11,4 +11,3 @@ try {
     echo "Erro na conexao: " . $erro->getMessage();
     exit();
 }
-?>

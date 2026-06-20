@@ -8,7 +8,7 @@ function calcularDesconto(valor, porcentagem) {
 
 let elementosPreco = document.querySelectorAll('.preco-final');
 
-elementosPreco.forEach(function(item) {
+elementosPreco.forEach(function (item) {
     let valorAntigo = parseFloat(item.textContent);
     let valorNovo = calcularDesconto(valorAntigo, 10);
     item.textContent = valorNovo.toFixed(2);

@@ -1,6 +1,6 @@
 <?php
-require_once "config.php"; 
-include_once "cabecalho.php"; 
+require_once "config.php";
+include_once "cabecalho.php";
 
 $sql = "SELECT * FROM pacientes ORDER BY nome ASC";
 $executar = $conexao->query($sql);
@@ -15,7 +15,7 @@ $listaPacientes = $executar->fetchAll(PDO::FETCH_ASSOC);
     <?php if (empty($listaPacientes)) { ?>
         <div class="alert alert-warning">Nenhum paciente encontrado.</div>
     <?php } else { ?>
-        
+
         <?php foreach ($listaPacientes as $paciente) { ?>
             <div class="col-md-4 mb-3">
                 <div class="card h-100 shadow-sm">
@@ -31,6 +31,7 @@ $listaPacientes = $executar->fetchAll(PDO::FETCH_ASSOC);
     <?php } ?>
 </div>
 
-</div> 
+</div>
 </body>
+
 </html>
