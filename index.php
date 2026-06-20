@@ -26,6 +26,17 @@ $totalConsultas = 0;
 while ($linha = $executarContador->fetch(PDO::FETCH_ASSOC)) {
     $totalConsultas = $totalConsultas + 1;
 }
+
+if (isset($_GET['id_excluir'])) {
+    $id_para_excluir = $_GET['id_excluir'];
+    $sqlDeletar = "DELETE FROM consultas WHERE id_consulta = '$id_para_excluir'";
+    
+    if ($conexao->query($sqlDeletar)) {
+        echo "<script>window.location.href='index.php';</script>";
+        exit();
+    }
+}
+
 ?>
 
 <div class="row mb-4">
@@ -41,6 +52,7 @@ while ($linha = $executarContador->fetch(PDO::FETCH_ASSOC)) {
     Atualmente existem <?php echo $totalConsultas; ?> consultas no sistema.
 </div>
 
+<a href="agendar.php" class="btn btn-success mb-3">+ Agendar Nova Consulta</a>
 <h2>Agenda de Consultas</h2>
 
 <div class="row">
@@ -57,10 +69,17 @@ while ($linha = $executarContador->fetch(PDO::FETCH_ASSOC)) {
                         <p class="card-text">Procedimento: <?php echo $consulta['nome_procedimento']; ?></p>
                         <p class="card-text">Data: <?php echo $consulta['data_consulta']; ?> às <?php echo $consulta['hora_consulta']; ?></p>
                         
-                        <div class="mt-3">
-                            Valor Original: R$ <?php echo $consulta['valor_base']; ?>
-                            <br>
-                            <strong>Valor com Desconto: R$ <span class="preco-final"><?php echo $consulta['valor_base']; ?></span></strong>
+                        <div class="mt-3 d-flex justify-content-between align-items-center">
+                        <div>
+                        Valor Original: R$ <?php echo $consulta['valor_base']; ?>
+                        <br>
+                        <strong>Valor com Desconto: R$ <span class="preco-final"><?php echo $consulta['valor_base']; ?></span></strong>
+                        </div>
+    
+                        <a href="index.php?id_excluir=<?php echo $consulta['id_consulta']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta consulta?');">
+                        ❌ Excluir
+                        </a>
+                        </div>   
                         </div>
                     </div>
                 </div>
@@ -70,7 +89,7 @@ while ($linha = $executarContador->fetch(PDO::FETCH_ASSOC)) {
     <?php } ?>
 </div>
 
-<script src=".js"></script>
+<script src="desconto.js"></script>
 
 </div> 
 </body>
